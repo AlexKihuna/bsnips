@@ -21,6 +21,9 @@ setup(name='bsnips',
       tests_require=['nose'],
       url='http://github.com/alexkihuna/bsnips',
       author='Alex Kihuna',
+      entry_points={
+          'console_scripts': ['file_dupe=bsnips.file_dupe:main'],
+      },
       license='MIT',
       packages=['bsnips'],
       install_requires=[

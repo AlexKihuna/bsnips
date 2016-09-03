@@ -56,5 +56,5 @@ def move_delete(dir_path, filename):
     # Get path, name from filename
     path, name = os.path.split(filename)
     # Normalize with destination considerations
-    nf = increment_file_number(dir_path, name)
+    nf = os.path.join(dir_path, increment_file_number(dir_path, name))
     move_file(filename, nf)

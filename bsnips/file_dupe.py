@@ -119,9 +119,9 @@ def handle_duplicates(path, confirm_delete=False):
             .select()
             .where(File.has_duplicate == True, ~(File.path << files))
     )
+    log.info('{} files are going to be deleted'.format(files.count()))
     if not confirm_delete:
-        log.info('{} files are going to be deleted'.format(files.count()))
-        for i, f in enumerate(files, 1):
+        for f in files:
             log.info('Moving "{}". Was created on {} & last modified on {}.'.format(
                 f.short_name, f.created_time, f.last_mod_time
             ))
@@ -132,7 +132,7 @@ def handle_duplicates(path, confirm_delete=False):
             log.info('Deleting "{}". Was created on {} & last modified on {}.'.format(
                 f.short_name, f.created_time, f.last_mod_time
             ))
-            # os.remove(f.path)
+            os.remove(f.path)
 
 
 def main():
